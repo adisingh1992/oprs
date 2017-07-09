@@ -1,0 +1,26 @@
+{% include "header.html" %}
+{% from "__formhelper.html" import render_field %}
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="container1">
+                    <section id="content1">
+                        <form action="{{ url_for('uploads') }}" method="POST" name="form" enctype=multipart/form-data>
+                            <h1 id="form-heading">Upload Article</h1>
+                            {{ render_field(form.author) }}
+                            {{ render_field(form.email) }}
+                            {{ render_field(form.contact) }}
+                            {{ render_field(form.address) }}
+                            {{ render_field(form.title) }}
+                            <label for="article_subject" style="margin: 2%;">Subject</label>{{ render_field(form.article_subject) }}
+                            <label for="article" style="margin: 2%;">Article File</label>
+                            <div style="padding-left: 25%;">{{ render_field(form.article) }}</div>
+                            {{ form.hidden_tag() }}
+                            {{ form.submit }}
+                        </form>
+                    </section>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+{% include "footer.html" %}

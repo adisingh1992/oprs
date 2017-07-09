@@ -1,0 +1,44 @@
+{% macro render_field(field) %}
+            <div>
+                {{ field(**kwargs)|safe }}
+                    {% if field.errors %}
+                    <ul class=errors>
+                        {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+            </div>
+{% endmacro %}
+
+{% macro render_article(articles, excerpts, length) %}
+        {% for id in range(0, length) %}
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 text-justify article">
+                    <h3><a href="/view/{{ articles[id][0] }}">{{ articles[id][1] }}</a></h3>
+                    <p>{{ excerpts[id] }}...<a href="/view/{{ articles[id][0] }}">[more]</a></h3></p>
+                    <h6>{{ articles[id][2] }}</h6>
+                    <a href="#main-content"><i>↑Back To Top</i></a>
+                    <hr/>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        {% endfor %}
+{% endmacro %}
+
+{% macro render_comments(comment) %}
+        {% for c in comment %}
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 text-justify comments-main">
+                    <br/>
+                    <p>{{ c[1] }}</p>
+                    <hr class="new-hr"/>
+                    <h6><b>Commented By : {{ c[0] }}</b></h6>
+                    <br/>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        {% endfor %}
+{% endmacro %}

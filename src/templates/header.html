@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>OPRS: Online Peer Review System</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" media="screen" href="/static/stylesheet.css">
+        <link rel="stylesheet" media="screen" href="/static/form_styles.css">
+        <link rel="shortcut icon" type="image/png" href="/static/favicon.ico"/>
+        <link rel="stylesheet" href="/static/bootstrap.min.css"/>
+        <script src="/static/jquery.min.js"></script>
+        <script src="/static/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#logoContainer").toggle().fadeIn(1500);
+            });
+        </script>
+    </head>
+    <script>
+        function resize(){
+            document.getElementsByTagName("body")[0].style["font-size"] = document.body.clientWidth*(14/1280) + "px";
+        }
+    </script>
+    <body onresize="resize()">
+        <header class="container">
+            <div class="row">
+                <div class="col-md-12" id="logoContainer">
+                    <a href="/">'PEER REVIEW!'</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" id="nav" style="">
+                    <ul>
+                        <li class="odd"><a href="/">Index</a></li>
+                        <li class="even"><a href="/home/">Articles</a></li>
+                        <li class="odd"><a href="/comments/">Comments</a></li>
+                        <li class="even"><a href="#" data-toggle="modal" data-target="#myModal">S[o]cial</a></li>
+                        {% if 'logged_in' not in session: %}
+                        <li class="odd"><a href="/login/">Sign-In</a></li>
+                        {% else: %}
+                        <li class="odd"><a href="/logout/">Sign-out</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content text-center">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" style="font-family: 'quicksandbold';">S[o]CIAL</h4>
+                    </div>
+                    <div class="modal-body">
+                        <img src="/static/fb.jpg"/>
+                        <br/>
+                        <img src="/static/twitter.png"/>
+                        <br/>
+                        <img src="/static/linkedin.png"/>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="row alert" style="margin-top: 2%;" role="alert">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6 alert-dismissible alert-warning fade in" style="padding: 2.5%;">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                        <span>{{message}}</span>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        </div>
+        <br/><br/>

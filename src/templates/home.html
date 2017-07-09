@@ -1,0 +1,6 @@
+{% include "header.html" %}
+{% from "__formhelper.html" import render_article %}
+        <div class="container" id="main-content">
+            {{ render_article(articles, excerpts, length) }}
+        </div>
+{% include "footer.html" %}

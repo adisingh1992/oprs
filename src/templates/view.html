@@ -1,0 +1,49 @@
+{% include "header.html" %}
+{% from "__formhelper.html" import render_field %}
+{% from "__formhelper.html" import render_comments %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <h3>{{ details[1] }}</h3>
+                    <h4>Subject: {{ details[2] }}</h4>
+                    <h6>Submitted By {{ details[6] }} On {{ details[4] }}</h6>
+                    <pre>{{ article }}</pre>
+                    <h6>Status: {{ details[3] }}</h6>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+                {% if 'reviewer' in session and session['subject'] == details[2] and details[3] != 'ACCEPTED': %}
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <h4>This article needs a review :</h4>
+                    <form action="/review/{{ details[0] }}" method="POST" name="form">
+                        {{ render_field(form.status) }}
+                        <br/>
+                        {{ form.hidden_tag() }}
+                        {{ form.submit }}
+                    </form>
+                </div>
+                {% endif %}
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                {% if 'reviewer' in session: %}
+                <div class="col-md-8">
+                    <h4>Provide Your Valuable Comment :</h4>
+                    <form action="/comment/{{ details[0] }}" method="POST" name="form">
+                        {{ form1.comment(cols="90", rows="10")|safe }}
+                        <br/>
+                        {{ form1.hidden_tag() }}
+                        {{ form1.submit }}
+                    </form>
+                </div>
+                {% endif %}
+                <div class="col-md-2"></div>
+            </div>
+            <br/><br/>
+            {{ render_comments(comment) }}
+        </div>
+{% include "footer.html" %}

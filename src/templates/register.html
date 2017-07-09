@@ -1,0 +1,28 @@
+{% include "header.html" %}
+{% from "__formhelper.html" import render_field %}
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="container1">
+                    <section id="content1">
+                        <form action="{{ url_for('register') }}" method="POST" name="form">
+                            <h1 id="form-heading">Register</h1>
+                            {{ render_field(form.username) }}
+                            {{ render_field(form.password) }}
+                            {{ render_field(form.confirm) }}
+                            {{ render_field(form.email) }}
+                            {{ render_field(form.fullname) }}
+                            {{ render_field(form.contact) }}
+                            <label for="reviewer" style="margin: 2%;">Wanna Be A Reviewer</label>{{ render_field(form.reviewer) }}
+                            <label for="reviewer_choice" style="margin: 2%;">Select Your Field</label>{{ render_field(form.reviewer_choice) }}
+                            <label for="tos" style="margin: 2%;">I Accept The Terms & Condition</label>{{ render_field(form.tos) }}
+                            {{ form.hidden_tag() }}
+                            {{ form.submit }}
+                        </form>
+                        <p>{{error}}</p>
+                    </section>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+{% include "footer.html" %}

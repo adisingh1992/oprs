@@ -1,0 +1,60 @@
+{% include "header.html" %}
+        <div class="container home">
+            <div class="row">
+                <div class="col-md-8 hometitle">
+                    <h3>What is Peer Review?</h3>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 homedesc">
+                    <p class="text-justify">
+                        Peer review, known as refereeing in some academic fields, is a process of subjecting an author’s scholarly work, research or ideas to the scrutiny of others who are experts in the same field. In journals peer review, the author’s article is usually subjected to some initial checks to assess its suitability for review (for instance, incomplete articles or work that was patently pseudoscience would be declined without review), after which a small number of reviewers are selected. The task expected of the reviewers varies somewhat from journal to journal, but in essence, is usually to assist the journal’s editor (who makes the final decision) on deciding whether or not to accept the article for publication. The reviewer will comment on the quality of the work done as well as on its originality and its importance.
+                    <img src="/static/peer_review.png" alt="peer_review" style="width: 100%;"/>
+                        Online peer review is emerging as the next step forward for many journal publishers in an ever increasing drive to take advantage of technological improvements in transferring data electronically over the internet. Traditionally the peer review process has been a paper-based system with authors submitting to a journal using the postal service. Reviewers are then assigned, by a variety of methods, and sent copies of the manuscript to review and report upon. Technological advances have allowed other methods of transferring the information between parties such as facsimile and email, but although these methods speed up the process they suffer drawbacks in quality and size/platform limitations. More importantly they do not address how the information can be managed effectively.
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <a href="/uploads/"><img src="/static/submit.png" id="submit_img" class="img-responsive"/></a>
+                    <div class="panelmain text-justify pull-right">
+                        <div class="panelhead" data-toggle="collapse" data-target="#panelbody">
+                                <span>LATEST REVIEWS</span>
+                        </div>
+                        <div class="panelbody collapse in" id="panelbody">
+                            {% for comment in comments %}
+                            <div class="reviews">
+                                <p><b>{{ comment[0] }}: </b>{{ comment[1] }}</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 hometitle">
+                    <h3>Is this just another Review System?</h3>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 homedesc text-justify">
+                    <p>
+                        The purpose of this system is to provide article submission, peer review, document
+                        tracking, and semi­automatic correspondence with authors and reviewers. The main
+                        reason for developing such a system resides in the need for a simple review system
+                        that fulfill the needs of a much wider audience than the current systems and can be
+                        easily   adapted   to   any   future   changes   required.   Another   important   reason   for
+                        developing a new system over existing one's resides in the difficulty of managing and
+                        using such systems that have been built to cater the needs of their specific domains.
+                    </p>
+                    <p>
+                        Looking beyond the interests of the particular stakeholders, there are three main benefits advocated for peer review:
+                    </p>
+                    <p>1: Improvement in the quality of published papers.</p>
+                    <p>2: Filtering of the output of papers to the benefit of readers.</p>
+                    <p>3: A <i>‘seal of approval’</i> that the published work meets certain standards, in particular for lay readers.</p>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+{% include "footer.html" %}

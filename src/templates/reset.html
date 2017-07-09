@@ -1,0 +1,21 @@
+{% include "header.html" %}
+{% from "__formhelper.html" import render_field %}
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="container1">
+                    <section id="content1">
+                        <form action="{{ url_for('passReset') }}" method="POST" name="form">
+                            <h1 id="form-heading">Reset Form</h1>
+                            {{ render_field(form.username) }}
+                            {{ render_field(form.password) }}
+                            {{ render_field(form.confirm) }}
+                            {{ form.hidden_tag() }}
+                            {{ form.submit }}
+                        </form>
+                    </section>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+{% include "footer.html" %}
